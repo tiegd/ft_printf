@@ -15,11 +15,14 @@ NAME = libftprintf.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 HEADER = libftprintf.h
-SRC = 	ftprintf.c
+SRC = 	ft_printf.c			\
+		ft_putnbr_base.c	\
 
 OBJ = $(SRC:.c=.o)
 
-all: $(NAME)
+all: libft/libft.a $(NAME)
+
+libft
 
 $(NAME): $(OBJ) $(HEADER)
 	ar rcs $(NAME) $?
