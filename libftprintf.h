@@ -16,7 +16,6 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include <stdio.h>
-# include "libft.h"
 
 int	ft_printf(const char *str, ...);
 int	ft_putnbr(int nbr, char *base, int count);

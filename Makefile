@@ -12,28 +12,42 @@
 
 
 NAME = libftprintf.a
+
 CC = cc
+
 CFLAGS = -Wall -Wextra -Werror
-HEADER = libftprintf.h
+
+LIB = libftprintf.h
+
 SRC = 	ft_printf.c			\
 		ft_putnbr_base.c	\
+		ft_putchar.c		\
+		ft_putnbr.c			\
+		ft_putptr.c			\
+		ft_putstr.c			\
+
+OBLIBFT = libft/ft_strlen.o
 
 OBJ = $(SRC:.c=.o)
 
 all: libft/libft.a $(NAME)
 
-libft
+libft/libft.a :
+	$(MAKE) -C libft
 
-$(NAME): $(OBJ) $(HEADER)
+$(NAME): $(OBJ) $(LIB)
 	ar rcs $(NAME) $?
 
 %.o : %.c Makefile
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 clean:
-	rm -f $(OBJ) $(OBJBONUS) .bonus
+	$(MAKE) -C libft fclean
+	rm -f $(OBJ)
+
 fclean: clean
 	rm -f $(NAME)
+
 re: fclean all bonus
 
-.PHONY: all fclean re bonus
+.PHONY: all clean fclean re bonus
