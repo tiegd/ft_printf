@@ -12,17 +12,15 @@
 
 #include "ft_printf.h"
 
-static int	ft_check(char c, va_list ap)
+static int	ft_print_arg(char c, va_list ap)
 {
 	if (c == 'c')
-		return (ft_putchar(va_arg(ap, int)));
+		return (ft_putchar((char) va_arg(ap, int)));
 	if (c == 's')
 		return (ft_putstr(va_arg(ap, char *)));
 	if (c == 'p')
 		return (ft_putptr(va_arg(ap, size_t), "0123456789abcdef", 0));
-	if (c == 'd')
-		return (ft_putnbr(va_arg(ap, int), 0));
-	if (c == 'i')
+	if (c == 'd' || c == 'i')
 		return (ft_putnbr(va_arg(ap, int), 0));
 	if (c == 'u')
 		return (ft_putnbr_unsigned(va_arg(ap, unsigned int), 0));
@@ -32,10 +30,19 @@ static int	ft_check(char c, va_list ap)
 		return (ft_putnbr_base(va_arg(ap, unsigned int), "0123456789ABCDEF", 0));
 	if (c == '%')
 		return (ft_putchar('%'));
+}
+
+int	ft_check(char *s, int i, va_list ap)
+{
+	if  (!s)
+		return (-1);
+	if (s == 'c' || s == 's' || s == 'p' || s == 'd' || s == 'u' || s == 'x' 
+		|| s == "X" || s == '%')
+		return (ft_print_arg(s, ap));
 	return (0);
 }
 
-int	ft_printf(const char *format, ...)
+int	ft_printf(const char *s, ...)
 {
 	va_list	ap;
 	int		count;
@@ -44,20 +51,21 @@ int	ft_printf(const char *format, ...)
 
 	count = 0;
 	i = 0;
-	va_start(ap, format);
-	if (!format)
+	if (!s)
 		return (-1);
-	while (*format)
+	va_start(ap, s);
+	while (*s)
 	{
-		if (*format == '%')
+		if (s[i] == '%')
 		{
-			// if (ft_check(format[i + 1], ap) < 0)
-			// 	return (-1);
-			len = ft_check(format[i + 1], ap);
-			i += 2;
+			i++;
+			if (ft_check(s, i, ap) == -1)
+				return (-1);
+			if (ft_check(s, i, ap))
+				len = ft_print_arg(s[i], ap);
 		}
 		count += len;
-		ft_putchar(format[i]);
+		ft_putchar(s[i]);
 		i++;
 	}
 	va_end(ap);
