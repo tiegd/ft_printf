@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base.c                                    :+:      :+:    :+:   */
+/*   ft_putnbr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gaducurt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,65 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-static int	ft_strcmp(char *base)
+int	ft_putnbr(int n, int count)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	while (base[i])
+	if (!n)
+		return (-1);
+	if (n == -2147483648)
+		ft_putstr("-2147483648");
+	else if (n < 0)
 	{
-		j = i + 1;
-		while (base[j])
-		{
-			if (base[i] == base[j])
-				return (0);
-			j++;
-		}
-		i++;
+		count += ft_putchar('-');
+		n = -n;
 	}
-	return (1);
-}
-static int	ft_check_base(char *base)
-{
-	int	i;
-
-	i = 0;
-	if (ft_strcmp(base))
+	if (n > 9)
 	{
-		while (base[i])
-		{
-			if (base[i] == '+' || base[i] == '-')
-				return (0);
-			i++;
-		}
+		ft_putnbr((n / 10), count);
+		count += ft_putchar((n % 10 + '0'));
 	}
-	if (i < 2)
-		return (0);
-	return (1);
-}
-
-int	ft_putnbr(int nbr, char *base, int count)
-{
-	int	i;
-
-	i = 0;
-	if (ft_check_base(base))
-	{
-		while (base[i])
-			i++;
-		if (nbr < 0)
-		{
-			count += ft_putchar('-');
-			nbr = -nbr;
-		}
-		if (nbr > 0)
-		{
-			ft_putnbr_base((nbr / i), base, count);
-			count += ft_putchar(base[nbr % i]);
-		}
-	}
+	if (n >= 0 && n <= 9)
+		count += ft_putchar((n + '0'));
 	return (count);
 }

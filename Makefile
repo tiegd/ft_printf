@@ -17,14 +17,15 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-LIB = libftprintf.h
+LIB = ft_printf.h
 
-SRC = 	ft_printf.c			\
-		ft_putnbr_base.c	\
-		ft_putchar.c		\
-		ft_putnbr.c			\
-		ft_putptr.c			\
-		ft_putstr.c			\
+SRC = 	ft_printf.c				\
+		ft_putchar.c			\
+		ft_putnbr_base.c		\
+		ft_putnbr_unsigned.c	\
+		ft_putnbr.c				\
+		ft_putptr.c				\
+		ft_putstr.c				\
 
 OBLIBFT = libft/ft_strlen.o
 

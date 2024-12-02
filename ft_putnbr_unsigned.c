@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_baseptr.c                                :+:      :+:    :+:   */
+/*   ft_putnbr_unsigned.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gaducurt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/29 15:25:59 by gaducurt          #+#    #+#             */
-/*   Updated: 2024/11/29 15:26:01 by gaducurt         ###   ########.fr       */
+/*   Created: 2024/12/02 14:55:45 by gaducurt          #+#    #+#             */
+/*   Updated: 2024/12/02 14:55:47 by gaducurt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_putptr_base(int nbr, char *base, int count)
+int	ft_putnbr_unsigned(unsigned int n, int count)
 {
-	if (nbr > 0)
+	if (n < 0)
+		return (-1);
+	if (n > 9)
 	{
-		ft_putptr_base((nbr / 16), base, count);
-		count += ft_putchar(base[nbr % 16]);
+		ft_putnbr_unsigned((n / 10), count);
+		count += ft_putchar((n % 10 + '0'));
 	}
-	return (count);
-}
-int	ft_putptr(int nbr, char *base, int count)
-{
-	if (nbr <= 0)
-		return (write(1, "(nil)", 5));
-	count += ft_putstr("0x");
-	count += ft_putptr_base(nbr, base, count);
+	if (n >= 0 && n <= 9)
+		count += ft_putchar((n + '0'));
 	return (count);
 }
