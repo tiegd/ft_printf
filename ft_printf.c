@@ -19,7 +19,7 @@ static int	ft_check(char c, va_list ap)
 	if (c == 's')
 		return (ft_putstr(va_arg(ap, char *)));
 	if (c == 'p')
-		return (ft_putptr(va_arg(ap, int), "0123456789abcdef", 0));
+		return (ft_putptr(va_arg(ap, size_t), "0123456789abcdef", 0));
 	if (c == 'd')
 		return (ft_putnbr(va_arg(ap, int), 0));
 	if (c == 'i')
@@ -29,7 +29,7 @@ static int	ft_check(char c, va_list ap)
 	if (c == 'x')
 		return (ft_putnbr_base(va_arg(ap, unsigned int), "0123456789abcdef", 0));
 	if (c == 'X')
-		return (ft_putnbr_base(va_arg(ap, unsigned int), "0123456789abcdef", 0));
+		return (ft_putnbr_base(va_arg(ap, unsigned int), "0123456789ABCDEF", 0));
 	if (c == '%')
 		return (ft_putchar('%'));
 	return (0);
@@ -51,8 +51,8 @@ int	ft_printf(const char *format, ...)
 	{
 		if (*format == '%')
 		{
-			if (ft_check(format[i + 1], ap) < 0)
-				return (-1);
+			// if (ft_check(format[i + 1], ap) < 0)
+			// 	return (-1);
 			len = ft_check(format[i + 1], ap);
 			i += 2;
 		}
@@ -62,15 +62,4 @@ int	ft_printf(const char *format, ...)
 	}
 	va_end(ap);
 	return (count);
-}
-
-int	main()
-{
-	char			c = 'c';
-	char			*str = "Salut";
-	int				d = 42;
-	unsigned int	u = 42;
-
-	printf("%d", ft_printf("%s, %ca va ? %p, %d, %i, %u, %x, %X %%", str, c, str, d, d, u, u, u));
-	printf("%d", printf("%s, %ca va ? %p, %d, %i, %u, %x, %X %%", str, c, str, d, d, u, u, u));
 }

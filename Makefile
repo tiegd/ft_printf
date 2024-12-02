@@ -25,16 +25,14 @@ SRC = 	ft_printf.c				\
 		ft_putnbr_unsigned.c	\
 		ft_putnbr.c				\
 		ft_putptr.c				\
+		ft_strlen.c				\
 		ft_putstr.c				\
+		main.c					\
 
-OBLIBFT = libft/ft_strlen.o
 
 OBJ = $(SRC:.c=.o)
 
-all: libft/libft.a $(NAME)
-
-libft/libft.a :
-	$(MAKE) -C libft
+all: $(NAME)
 
 $(NAME): $(OBJ) $(LIB)
 	ar rcs $(NAME) $?
@@ -43,7 +41,6 @@ $(NAME): $(OBJ) $(LIB)
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 clean:
-	$(MAKE) -C libft fclean
 	rm -f $(OBJ)
 
 fclean: clean
