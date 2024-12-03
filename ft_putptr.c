@@ -22,6 +22,7 @@ static int	ft_putptr_base(size_t nbr, char *base)
 	count += ft_putchar(base[nbr % 16]);
 	return (count);
 }
+
 int	ft_putptr(size_t nbr, char *base)
 {
 	int	count;
