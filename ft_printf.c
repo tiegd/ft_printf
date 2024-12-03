@@ -62,20 +62,10 @@ int	ft_printf(const char *s, ...)
 	va_start(ap, s);
 	while (*s)
 	{
-		// if (*s == '%')
-		// {
 		check = ft_check(&s, ap);
 		if (check < 0)
 			return (-1);
 		count += check;
-		// }
-		// else
-		// {
-		// 	check = ft_putchar(*s);
-		// 	if (check < 0)
-		// 		return (-1);
-		// 	count += check;
-		// }
 		s++;
 	}
 	va_end(ap);

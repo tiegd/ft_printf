@@ -23,5 +23,6 @@ int	ft_putnbr_unsigned(unsigned int n, int count)
 	}
 	if (n >= 0 && n <= 9)
 		count += ft_putchar((n + '0'));
+	count++;
 	return (count);
 }

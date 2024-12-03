@@ -27,8 +27,6 @@ SRC = 	ft_printf.c				\
 		ft_putptr.c				\
 		ft_strlen.c				\
 		ft_putstr.c				\
-		main.c					\
-
 
 OBJ = $(SRC:.c=.o)
 

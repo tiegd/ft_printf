@@ -24,5 +24,6 @@ int	ft_putnbr_base(unsigned int nbr, char *base, int count)
 		ft_putnbr_base((nbr / 16), base, count);
 		count += ft_putchar(base[nbr % 16]);
 	}
+	count++;
 	return (count);
 }
