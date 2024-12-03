@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int	ft_putstr(char *s)
+int	ft_putstr(const char *s)
 {
 	if (!s)
 		return (write(1, "(null)", 6));

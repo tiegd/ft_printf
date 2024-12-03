@@ -30,43 +30,53 @@ static int	ft_print_arg(char c, va_list ap)
 		return (ft_putnbr_base(va_arg(ap, unsigned int), "0123456789ABCDEF", 0));
 	if (c == '%')
 		return (ft_putchar('%'));
+	return (-1);
 }
 
-int	ft_check(char *s, int i, va_list ap)
+static int	ft_check(const char **s, va_list ap)
 {
-	if  (!s)
-		return (-1);
-	if (s == 'c' || s == 's' || s == 'p' || s == 'd' || s == 'u' || s == 'x' 
-		|| s == "X" || s == '%')
-		return (ft_print_arg(s, ap));
-	return (0);
+	int	count;
+
+	count = 0;
+	if (**s == '%')
+	{
+		(*s)++;
+		if (!*s)
+			return (-1);
+		count += ft_print_arg(**s, ap);
+	}
+	else
+		count += ft_putchar(**s);
+	return (count);
 }
 
 int	ft_printf(const char *s, ...)
 {
 	va_list	ap;
 	int		count;
-	int		len;
-	int		i;
+	int		check;
 
 	count = 0;
-	i = 0;
 	if (!s)
 		return (-1);
 	va_start(ap, s);
 	while (*s)
 	{
-		if (s[i] == '%')
-		{
-			i++;
-			if (ft_check(s, i, ap) == -1)
-				return (-1);
-			if (ft_check(s, i, ap))
-				len = ft_print_arg(s[i], ap);
-		}
-		count += len;
-		ft_putchar(s[i]);
-		i++;
+		// if (*s == '%')
+		// {
+		check = ft_check(&s, ap);
+		if (check < 0)
+			return (-1);
+		count += check;
+		// }
+		// else
+		// {
+		// 	check = ft_putchar(*s);
+		// 	if (check < 0)
+		// 		return (-1);
+		// 	count += check;
+		// }
+		s++;
 	}
 	va_end(ap);
 	return (count);

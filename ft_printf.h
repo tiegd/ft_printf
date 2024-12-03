@@ -16,14 +16,15 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include <stdio.h>
+// # include "Libft/libft.h"
 
 int	ft_printf(const char *str, ...);
 int	ft_putnbr(int n, int count);
 int	ft_putnbr_base(unsigned int nbr, char *base, int count);
 int	ft_putchar(char c);
 int	ft_putptr(size_t nbr, char *base, int count);
-int	ft_putstr(char *s);
+int	ft_putstr(const char *s);
 int	ft_putnbr_unsigned(unsigned int n, int count);
-int ft_strlen(const char *s);
+size_t ft_strlen(const char *s);
 
 #endif
