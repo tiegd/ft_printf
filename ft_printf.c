@@ -19,15 +19,15 @@ static int	ft_print_arg(char c, va_list ap)
 	if (c == 's')
 		return (ft_putstr(va_arg(ap, char *)));
 	if (c == 'p')
-		return (ft_putptr(va_arg(ap, size_t), "0123456789abcdef", 0));
+		return (ft_putptr(va_arg(ap, size_t), "0123456789abcdef"));
 	if (c == 'd' || c == 'i')
-		return (ft_putnbr(va_arg(ap, int), 0));
+		return (ft_putnbr(va_arg(ap, int)));
 	if (c == 'u')
-		return (ft_putnbr_unsigned(va_arg(ap, unsigned int), 0));
+		return (ft_putnbr_unsigned(va_arg(ap, unsigned int)));
 	if (c == 'x')
-		return (ft_putnbr_base(va_arg(ap, unsigned int), "0123456789abcdef", 0));
+		return (ft_putnbr_base(va_arg(ap, unsigned int), "0123456789abcdef"));
 	if (c == 'X')
-		return (ft_putnbr_base(va_arg(ap, unsigned int), "0123456789ABCDEF", 0));
+		return (ft_putnbr_base(va_arg(ap, unsigned int), "0123456789ABCDEF"));
 	if (c == '%')
 		return (ft_putchar('%'));
 	return (-1);

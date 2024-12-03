@@ -12,25 +12,27 @@
 
 #include "ft_printf.h"
 
-static int	ft_putptr_base(size_t nbr, char *base, int count)
+static int	ft_putptr_base(size_t nbr, char *base)
 {
+	int	count;
+
+	count = 0;
 	if (nbr >= 16)
-	{
-		count += ft_putptr_base((nbr / 16), base, count);
-		count += ft_putchar(base[nbr % 16]);
-	}
-	else
-		count += ft_putchar(base[nbr]);
+		count += ft_putptr_base((nbr / 16), base);
+	count += ft_putchar(base[nbr % 16]);
 	return (count);
 }
-int	ft_putptr(size_t nbr, char *base, int count)
+int	ft_putptr(size_t nbr, char *base)
 {
+	int	count;
+
+	count = 0;
 	if (nbr == 0)
 	{
 		write(1, "(nil)", 5);
 		return (5);
 	}
 	count += ft_putstr("0x");
-	count += ft_putptr_base(nbr, base, count);
+	count += ft_putptr_base(nbr, base);
 	return (count);
 }

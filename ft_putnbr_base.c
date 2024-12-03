@@ -12,18 +12,13 @@
 
 #include "ft_printf.h"
 
-int	ft_putnbr_base(unsigned int nbr, char *base, int count)
+int	ft_putnbr_base(unsigned int nbr, char *base)
 {
-	if (nbr < 0)
-	{
-		count += ft_putchar('-');
-		nbr = -nbr;
-	}
-	if (nbr > 0)
-	{
-		ft_putnbr_base((nbr / 16), base, count);
-		count += ft_putchar(base[nbr % 16]);
-	}
-	count++;
+	int	count;
+
+	count = 0;
+	if (nbr >= 16)
+		count += ft_putnbr_base((nbr / 16), base);
+	count += ft_putchar(base[nbr % 16]);
 	return (count);
 }

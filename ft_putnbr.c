@@ -12,8 +12,11 @@
 
 #include "ft_printf.h"
 
-int	ft_putnbr(int n, int count)
+int	ft_putnbr(int n)
 {
+	int	count;
+
+	count = 0;
 	if (n == -2147483648)
 		count += ft_putstr("-2147483648");
 	else if (n < 0)
@@ -22,12 +25,11 @@ int	ft_putnbr(int n, int count)
 		n = -n;
 	}
 	if (n > 9)
-	{
-		ft_putnbr((n / 10), count);
-		count += ft_putchar((n % 10 + '0'));
-	}
-	if (n >= 0 && n <= 9)
-		count += ft_putchar((n + '0'));
-	count++;
+		count += ft_putnbr((n / 10));
+	count += ft_putchar((n % 10 + '0'));
 	return (count);
 }
+// int	main()
+// {
+// 	ft_putnbr(-4664, 0);
+// }

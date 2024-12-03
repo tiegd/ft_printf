@@ -64,4 +64,9 @@ int	main()
 	printf("nb = %d\n", printf(NULL));
 	printf("nb = %d\n", ft_printf(NULL));
 	printf("\n");
+
+	printf("nb = %d\n", printf(" %d ", 0));
+	printf("nb = %d\n", ft_printf(" %d ", 0));
+	printf("\n");
+
 }
