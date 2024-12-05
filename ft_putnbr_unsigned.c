@@ -20,7 +20,13 @@ int	ft_putnbr_unsigned(unsigned int n)
 	if (n < 0)
 		return (-1);
 	if (n > 9)
+	{
 		count += ft_putnbr_unsigned((n / 10));
+		if (count < 0)
+			return (-1);
+	}
 	count += ft_putchar((n % 10 + '0'));
+	if (count < 0)
+		return (-1);
 	return (count);
 }

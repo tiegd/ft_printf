@@ -28,8 +28,14 @@ int	ft_putnbr(int n)
 		n = -n;
 	}
 	if (n > 9)
+	{
 		count += ft_putnbr((n / 10));
+		if (count < 0)
+			return (-1);
+	}
 	count += ft_putchar((n % 10 + '0'));
+	if (count < 0)
+		return (-1);
 	return (count);
 }
 // int	main()
