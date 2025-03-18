@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_baseptr.c                                :+:      :+:    :+:   */
+/*   ft_putptr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gaducurt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gaducurt <gaducurt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 15:25:59 by gaducurt          #+#    #+#             */
-/*   Updated: 2024/11/29 15:26:01 by gaducurt         ###   ########.fr       */
+/*   Updated: 2025/03/18 15:24:39 by gaducurt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_putptr(size_t nbr, char *base)
 	if (count < 0)
 		return (-1);
 	count += ft_putptr_base(nbr, base);
-		if (count < 0)
-			return (-1);
+	if (count < 0)
+		return (-1);
 	return (count);
 }
